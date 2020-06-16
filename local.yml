@@ -1,7 +1,8 @@
-version: "2"
+version: "3.6"
 services:
   elasticsearch:
-    image: elasticsearch
+    container_name: elasticsearch_template
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.1
     restart: always
     ports:
       - "9200:9200"
@@ -18,7 +19,8 @@ services:
         max-size: "5m"
         max-file: "10"
   kibana:
-    image: kibana
+    container_name: kibana_template
+    image: docker.elastic.co/kibana/kibana:7.7.1
     restart: always
     ports:
       - "5601:5601"
