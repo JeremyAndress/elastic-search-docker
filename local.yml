@@ -1,37 +1,49 @@
-version: "3.6"
+version: '2.2'
 services:
-  elasticsearch:
-    container_name: elasticsearch_template
+  es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.7.1
-    restart: always
-    ports:
-      - "9200:9200"
-      - "9300:9300"
+    container_name: es01
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.type=single-node
+      #- bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    # ulimits:
+    #   memlock:
+    #     soft: -1
+    #     hard: -1
     volumes:
-      - ./volumes/data:/usr/share/elasticsearch/data
-      - ./volumes/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-    environment:
-      - ES_JAVA_OPTS=-Xms2g -Xmx2g
-    network_mode: "host"
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "5m"
-        max-file: "10"
-  kibana:
-    container_name: kibana_template
-    image: docker.elastic.co/kibana/kibana:7.7.1
-    restart: always
+      - data01:/usr/share/elasticsearch/data
     ports:
-      - "5601:5601"
-    environment:
-      - ELASTICSEARCH_URL=http://10.46.0.104:9200
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - elastic
     logging:
       driver: "json-file"
       options:
         max-size: "5m"
         max-file: "10"
+  kib01:
+    image: docker.elastic.co/kibana/kibana:7.7.1
+    container_name: kib01
+    ports:
+      - 5601:5601
+    environment:
+      SERVER_HOST: 0.0.0.0
+      ELASTICSEARCH_URL: http://es01:9200
+      ELASTICSEARCH_HOSTS: http://es01:9200
+    networks:
+      - elastic
+volumes:
+  data01:
+    driver: local
+  # data02:
+  #   driver: local
+  # data03:
+  #   driver: local
+
 networks:
-  default:
-    external:
-      name: privnet
+  elastic:
+    driver: bridge
