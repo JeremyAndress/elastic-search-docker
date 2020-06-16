@@ -1,0 +1,35 @@
+version: "2"
+services:
+  elasticsearch:
+    image: elasticsearch
+    restart: always
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./volumes/data:/usr/share/elasticsearch/data
+      - ./volumes/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    environment:
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g
+    network_mode: "host"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "10"
+  kibana:
+    image: kibana
+    restart: always
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_URL=http://10.46.0.104:9200
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "10"
+networks:
+  default:
+    external:
+      name: privnet
