@@ -1,9 +1,3 @@
----
-title: Elastic Search Stack
-author: JeremySilvaSilva
-date: 16-06-2020
----
-
 # Elastic Search Stack :rainbow:
 
 Este [repositorio](https://github.com/JeremySilvaSilva/elastic-search-docker) cuenta con una implementacion de Elastic Search utilizando Elastic y Kibana en su version mas actual(7.7). Creado como template para el futuro uso de proyectos que necesiten de elastic search. :shipit:
@@ -40,3 +34,12 @@ $ curl -X GET "localhost:9200/_cat/nodes?v&pretty"
 
 
 ![Kibana Response](/screenshots/kibana_dashboard.png)
+
+
+---
+title: "Elastic Search Stack"
+author: 
+    - name: "JeremySilvaSilva"
+    - url: https://github.com/JeremySilvaSilva
+date: 16-06-2020
+---
