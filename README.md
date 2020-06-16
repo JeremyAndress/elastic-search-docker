@@ -6,5 +6,5 @@ Este repositorio cuenta con una implementacion de Elastic Search utilizando Elas
 
 Para hacer funcionar este template es necesario tener las siguientes herramientas instaladas en su maquina. Este template fue generado en un entorno Fedora, pero gracias al uso de Docker, su funcionamiento debe ser casi el mismo en maquinas Windows o Mac.
 
-- [Docker :whale:] - version 19+
-- [Docker Compose :whale2:] - version 1.18
+- Docker :whale: - version 19+
+- Docker Compose :whale2: - version 1.18
