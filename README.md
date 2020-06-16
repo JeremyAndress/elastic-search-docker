@@ -36,10 +36,12 @@ $ curl -X GET "localhost:9200/_cat/nodes?v&pretty"
 ![Kibana Response](/screenshots/kibana_dashboard.png)
 
 
----
+
+<!-- 
 title: "Elastic Search Stack"
 author: 
     - name: "JeremySilvaSilva"
     - url: https://github.com/JeremySilvaSilva
-date: 16-06-2020
----
+date: 16-06-2020 
+-->
+
